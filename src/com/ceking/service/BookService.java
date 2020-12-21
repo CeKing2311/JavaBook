@@ -1,6 +1,7 @@
 package com.ceking.service;
 
 import com.ceking.entity.Book;
+import com.ceking.entity.Page;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface BookService {
     public int updateBook(Book book);
     public Book queryBookById(int id);
     public List<Book> queryBooks();
+    public Page<Book> queryPageList(int pageIndex,int pageSize);
 }

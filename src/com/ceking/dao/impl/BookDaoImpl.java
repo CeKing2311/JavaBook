@@ -2,6 +2,8 @@ package com.ceking.dao.impl;
 
 import com.ceking.dao.BookDao;
 import com.ceking.entity.Book;
+import com.ceking.entity.Page;
+import org.junit.Test;
 
 import java.util.List;
 
@@ -40,4 +42,18 @@ public class BookDaoImpl extends BaseDao implements BookDao {
         String sql ="select `id`,`name` , `author` , `price` , `sales` , `stock` , `img_path` from t_book ";
         return queryForList(Book.class, sql );
     }
+
+    @Override
+    public List<Book> queryPageList(int begin, int pageSize) {
+        String sql = "select `id`,`name`,`author`,`price`,`sales`,`stock`,`img_path` from t_book limit ? , ? ";
+        return  queryForList(Book.class,sql,begin,pageSize);
+    }
+
+    @Override
+    public int queryTotalCount() {
+        String sql ="select count(*) from t_book ";
+        Number num= (Number) queryForObjectValue(sql);
+        return  num.intValue();
+    }
+
 }

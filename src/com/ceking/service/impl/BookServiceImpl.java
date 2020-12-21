@@ -3,6 +3,7 @@ package com.ceking.service.impl;
 import com.ceking.dao.BookDao;
 import com.ceking.dao.impl.BookDaoImpl;
 import com.ceking.entity.Book;
+import com.ceking.entity.Page;
 import com.ceking.service.BookService;
 
 import java.util.List;
@@ -38,5 +39,25 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> queryBooks() {
         return bookDao.queryBooks();
+    }
+
+    @Override
+    public Page<Book> queryPageList(int pageIndex, int pageSize) {
+        Page<Book> page = new Page<>();
+
+        int totalCount = bookDao.queryTotalCount();
+        page.setTotalCount(totalCount);
+        int totalPage = totalCount / pageSize;
+        if (totalCount % pageSize > 0) {
+            totalPage += 1;
+        }
+        page.setTotalPage(totalPage);
+        page.setPageIndex(pageIndex);
+        page.setPageSize(pageSize);
+
+        int begin = (page.getPageIndex() - 1) * pageSize;
+        List<Book> books = bookDao.queryPageList(begin, pageSize);
+        page.setData(books);
+        return page;
     }
 }

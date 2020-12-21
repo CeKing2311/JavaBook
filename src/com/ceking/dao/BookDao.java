@@ -1,6 +1,7 @@
 package com.ceking.dao;
 
 import com.ceking.entity.Book;
+import com.ceking.entity.Page;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface BookDao {
     public int updateBook(Book book);
     public Book queryBookById(int id);
     public List<Book> queryBooks();
+    public List<Book> queryPageList(int begin, int pageSize);
+    public int queryTotalCount();
 }

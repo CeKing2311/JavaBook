@@ -3,9 +3,11 @@ package com.ceking.test;
 import com.ceking.dao.BookDao;
 import com.ceking.dao.impl.BookDaoImpl;
 import com.ceking.entity.Book;
+import com.ceking.entity.Page;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -37,4 +39,17 @@ public class BookDaoImplTest {
     @Test
     public void queryBooks() {
     }
+    @Test
+    public void queryTotalCount() {
+        System.out.println(bookDao.queryTotalCount());
+    }
+    @Test
+    public void queryPageList() {
+        List<Book> books = bookDao.queryPageList(0, Page.PAGE_SIZE);
+        for (Book book:books){
+            System.out.println(book);
+        }
+    }
+
+
 }

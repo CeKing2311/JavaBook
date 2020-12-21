@@ -33,6 +33,7 @@
     <form action="manager/bookServlet" method="get">
         <input type="hidden" name="action" value="${empty requestScope.method?"add":requestScope.method}">
         <input type="hidden" name="id" value="${requestScope.bookInfo.id}">
+        <input type="hidden" name="totalPage" value="${param.totalPage}">
         <table>
             <tr>
                 <td>名称</td>
