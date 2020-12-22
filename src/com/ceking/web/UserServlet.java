@@ -35,7 +35,7 @@ public class UserServlet extends BaseServlet {
         User user = userService.login(new User(0, username, password, null));
         if (user != null) {
             HttpSession session = req.getSession();
-            session.setAttribute("username", user.getUsername());
+            session.setAttribute("user", user);
             req.getRequestDispatcher("/pages/user/login_success.jsp").forward(req, resp);
         } else {
             req.setAttribute("msg", "用户名或密码错误");

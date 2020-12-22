@@ -19,8 +19,8 @@
             <a href="pages/user/login.jsp">登录</a> |
             <a href="pages/user/regist.jsp">注册</a>
         </c:if>
-        <c:if test="${ not empty sessionScope.username}">
-            <span>欢迎<span class="um_span">${sessionScope.username}</span>光临硅谷书城</span>
+        <c:if test="${ not empty sessionScope.user.username}">
+            <span>欢迎<span class="um_span">${sessionScope.user.username}</span>光临硅谷书城</span>
             <a href="pages/order/order.jsp">我的订单</a>
             <a href="userServlet?action=loginOut">注销</a>
         </c:if>
