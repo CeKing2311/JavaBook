@@ -33,7 +33,7 @@
                     </span>
                 </div>
                 <div class="form">
-                    <form action="/userServlet" method="post">
+                    <form action="userServlet" method="post">
                         <input type="hidden" name="action" value="login">
                         <label>用户名称：</label>
                         <input class="itxt" type="text" placeholder="请输入用户名" autocomplete="off" tabindex="1"

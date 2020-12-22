@@ -3,6 +3,7 @@ package com.ceking.service;
 import com.ceking.entity.Book;
 import com.ceking.entity.Page;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /*
@@ -17,4 +18,5 @@ public interface BookService {
     public Book queryBookById(int id);
     public List<Book> queryBooks();
     public Page<Book> queryPageList(int pageIndex,int pageSize);
+    public Page<Book> queryPageList(int pageIndex, int pageSize, Double minPrice, Double maxPrice);
 }

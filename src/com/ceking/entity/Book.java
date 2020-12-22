@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 public class Book {
     private  int id;
     private  String name;
-    private BigDecimal price;
+    private Double price;
     private  String author;
     private int sales;
     private int stock;
@@ -19,7 +19,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(int id, String name, BigDecimal price, String author, int sales, int stock, String imgPath) {
+    public Book(int id, String name, Double price, String author, int sales, int stock, String imgPath) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -47,11 +47,11 @@ public class Book {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

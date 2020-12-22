@@ -94,7 +94,7 @@
 </head>
 <body>
 <div id="login_header">
-    <img class="logo_img" alt="" src="/static/img/logo.gif">
+    <img class="logo_img" alt="" src="static/img/logo.gif">
 </div>
 
 <div class="login_banner">
@@ -113,7 +113,7 @@
                     </span>
                 </div>
                 <div class="form">
-                    <form action="/userServlet" method="post">
+                    <form action="userServlet" method="post">
                         <input type="hidden" name="action" value="regist">
                         <label>用户名称：</label>
                         <input class="itxt" type="text" placeholder="请输入用户名"
@@ -137,18 +137,23 @@
                         <br/>
                         <label>验证码：</label>
                         <input class="itxt" type="text" style="width: 150px;" name="code" id="code"/>
-                        <img alt="" src="/static/img/code.bmp" style="float: right; margin-right: 40px">
+                        <img alt="" src="kaptcha.jpg" id="codeImg" style="float: right; margin-right: 40px;width: 90px;height: 40px;">
                         <br/>
                         <br/>
                         <input type="submit" value="注册" id="sub_btn"/>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 <%--静态包含页脚内容--%>
 <%@include file="/pages/common/footer.jsp" %>
+<script type="text/javascript">
+    $("#codeImg").click(function (){
+        console.log(Date.now())
+        this.src = "${basePath}kaptcha.jpg?version="+Date.now()+"";
+    })
+</script>
 </body>
 </html>

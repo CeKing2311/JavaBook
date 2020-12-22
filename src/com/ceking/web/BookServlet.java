@@ -102,6 +102,7 @@ public class BookServlet extends BaseServlet {
         int pageSize = WebUtils.parseInt(req.getParameter("pageSize"), Page.PAGE_SIZE);
 
         Page<Book> page= service.queryPageList(pageIndex,pageSize);
+        page.setUrl("manager/bookServlet?action=queryPageList");
         req.setAttribute("page",page);
         req.getRequestDispatcher("/pages/manager/book_manager.jsp").forward(req,resp);
     }

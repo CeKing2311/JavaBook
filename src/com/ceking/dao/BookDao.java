@@ -3,6 +3,7 @@ package com.ceking.dao;
 import com.ceking.entity.Book;
 import com.ceking.entity.Page;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /*
@@ -18,4 +19,6 @@ public interface BookDao {
     public List<Book> queryBooks();
     public List<Book> queryPageList(int begin, int pageSize);
     public int queryTotalCount();
+    public List<Book> queryPageList(int begin, int pageSize,Double minPrice,Double maxPrice);
+    public int queryTotalCount(Double minPrice, Double maxPrice);
 }

@@ -12,6 +12,25 @@ create table t_user(
 insert into t_user (username,password,email) values('admin','admin','admin@qq.com')
 **/
 
+use Book;
+create  table t_order(
+    order_id varchar(50) primary  key,
+    create_time datetime,
+    price decimal(11,2),
+    status int,
+    user_id int ,
+    foreign key (user_id) references t_user(id)
+)
+create  table  t_order_item(
+    id int primary  key auto_increment,
+    name varchar (50),
+    count int,
+    price decimal (11,2),
+    total_price decimal (11,2),
+    order_id varchar (50),
+    foreign key (order_id) references t_order(order_id)
+)
+
 CREATE TABLE t_book(
    id INT PRIMARY KEY AUTO_INCREMENT,
    NAME VARCHAR(100),
@@ -82,4 +101,4 @@ VALUES(NULL , '大话设计模式' , '国哥' , 89.15 , 20 , 10 , 'static/img/de
  
 INSERT INTO t_book(`id` , `name` , `author` , `price` , `sales` , `stock` , `img_path`) 
 VALUES(NULL , '人月神话' , '刚哥' , 88.15 , 20 , 80 , 'static/img/default.jpg');
- 
+

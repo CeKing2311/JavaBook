@@ -14,15 +14,26 @@ public class Page<T> {
     private  int pageSize =PAGE_SIZE;
     private  int pageIndex;
     private List<T> data;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    private  String url;
     public Page() {
     }
 
-    public Page(int totalCount, int totalPage, int pageSize, int pageIndex, List<T> data) {
+    public Page(int totalCount, int totalPage, int pageSize, int pageIndex, List<T> data,String url) {
         this.totalCount = totalCount;
         this.totalPage = totalPage;
         this.pageSize = pageSize;
         this.pageIndex = pageIndex;
         this.data = data;
+        this.url =url;
     }
 
     public int getTotalCount() {
@@ -79,6 +90,7 @@ public class Page<T> {
                 ", pageSize=" + pageSize +
                 ", pageIndex=" + pageIndex +
                 ", data=" + data +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

@@ -21,7 +21,7 @@ public class BookDaoImplTest {
     private BookDao bookDao =new BookDaoImpl();
     @Test
     public void addBook() {
-        bookDao.addBook(new Book(0,"Java从入门到放弃",new BigDecimal(8888),"C大大",0,100,"/static/img/default.jpg"));
+        bookDao.addBook(new Book(0,"Java从入门到放弃",888.0,"C大大",0,100,"/static/img/default.jpg"));
     }
 
     @Test

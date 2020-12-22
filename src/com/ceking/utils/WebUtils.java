@@ -4,6 +4,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.Map;
 
 /*
@@ -40,8 +41,23 @@ public class WebUtils {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return defaultValue;
+    }
+
+    /**
+     * 字符串转double
+     * @param str
+     * @param defaultValue
+     * @return
+     */
+    public  static Double parseDouble(String str,double defaultValue){
+        try {
+            return Double.parseDouble(str);
+        } catch (NumberFormatException e) {
+//            e.printStackTrace();
+        }
+        return  defaultValue;
     }
 }
