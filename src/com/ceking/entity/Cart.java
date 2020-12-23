@@ -1,5 +1,6 @@
 package com.ceking.entity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -55,7 +56,8 @@ public class Cart {
         CartItem cartItem = this.items.get(id);
         if (cartItem != null) {
             cartItem.setCount(count);
-            cartItem.setTotalPrice((double) Math.round(cartItem.getPrice() * cartItem.getCount()));
+            Double totalPrice= cartItem.getPrice() * cartItem.getCount();
+            cartItem.setTotalPrice(new BigDecimal(totalPrice).setScale(2).doubleValue());
         }
     }
 

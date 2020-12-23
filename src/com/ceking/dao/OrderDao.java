@@ -2,6 +2,8 @@ package com.ceking.dao;
 
 import com.ceking.entity.Order;
 
+import java.util.List;
+
 /**
  * @author ceking
  * @desc
@@ -9,5 +11,9 @@ import com.ceking.entity.Order;
  */
 public interface OrderDao {
     public  int saveOrder(Order order);
-
+    List<Order> getOrderList(int userId);
+    List<Order> getAllOrderList(int begin,int pageSize);
+    int queryTotalCount();
+    int sendOrder(String orderId);
+    int receiveOrder(String orderId);
 }

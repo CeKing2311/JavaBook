@@ -15,13 +15,13 @@
     <span class="wel_word">网上书城</span>
     <div>
         <%-- 如果用户没有登录，显示登录|注册菜单--%>
-        <c:if test="${ empty sessionScope.username}">
+        <c:if test="${ empty sessionScope.user}">
             <a href="pages/user/login.jsp">登录</a> |
             <a href="pages/user/regist.jsp">注册</a>
         </c:if>
         <c:if test="${ not empty sessionScope.user.username}">
             <span>欢迎<span class="um_span">${sessionScope.user.username}</span>光临硅谷书城</span>
-            <a href="pages/order/order.jsp">我的订单</a>
+            <a href="orderServlet?action=getOrder">我的订单</a>
             <a href="userServlet?action=loginOut">注销</a>
         </c:if>
         <a href="pages/cart/cart.jsp">购物车</a>
@@ -45,9 +45,9 @@
                 </div>
             </c:if>
             <c:if test="${ not empty sessionScope.cartInfo.items}">
-                <span>您的购物车中有${ sessionScope.cartInfo.totalCount}件商品</span>
+                <span> 您的购物车中有<span id="cartNum"> ${ sessionScope.cartInfo.totalCount}</span>件商品</span>
                 <div>
-                    您刚刚将<span style="color: red">${sessionScope.lastName}</span>加入到了购物车中
+                    您刚刚将<span style="color: red" id="lastName">${sessionScope.lastName}</span>加入到了购物车中
                 </div>
             </c:if>
         </div>
@@ -93,7 +93,15 @@
     $(function () {
         $("button.addToCart").click(function () {
             let bookId = $(this).attr("bookId");
-            location.href = "${basePath}cartServlet?action=addItem&Id=" + bookId;
+            $.getJSON("${basePath}cartServlet", "action=addItem&Id=" + bookId, function (res) {
+                console.log(res);
+                if (res.success) {
+                    // alert(res.msg);
+                    $("#cartNum").html(res.totalCount);
+                    $("#lastName").html(res.lastName);
+                }
+            });
+            <%--location.href = "${basePath}cartServlet?action=addItem&Id=" + bookId;--%>
         })
     })
 </script>

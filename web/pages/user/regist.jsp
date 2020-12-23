@@ -80,7 +80,17 @@
                 $("span.errorMsg").text("");
 
             });
-
+            $("#username").blur(function (){
+                let username = $(this).val();
+                $.getJSON("${basePath}userServlet","action=existUserName&username="+username,function (res){
+                    console.log(res);
+                    if (!res.isExist){
+                        $("span.errorMsg").html("用户名可用!");
+                    }else {
+                        $("span.errorMsg").html("用户名已存在,请重新输入!");
+                    }
+                })
+            });
         });
 
     </script>

@@ -4,6 +4,7 @@ import com.ceking.entity.User;
 import com.ceking.service.UserService;
 import com.ceking.service.impl.UserServiceImpl;
 import com.ceking.utils.WebUtils;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  *@author ceking
@@ -76,10 +79,34 @@ public class UserServlet extends BaseServlet {
         }
     }
 
+    /**
+     * 退出
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void loginOut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         session.invalidate();
         //重定向到工程目录
         resp.sendRedirect(req.getContextPath());
+    }
+
+    /**
+     * 判断用户名是否存在
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void existUserName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String userName = req.getParameter("username");
+        boolean isExist = userService.existUsername(userName);
+        Map<String,Object> result= new HashMap<>();
+        result.put("isExist", isExist);
+        Gson gson =new Gson();
+        String json = gson.toJson(result);
+        resp.getWriter().write(json);
     }
 }

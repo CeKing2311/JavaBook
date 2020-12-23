@@ -14,7 +14,7 @@ public class Book {
     private  String author;
     private int sales;
     private int stock;
-    private String imgPath="/static/img/default.jpg";
+    private String imgPath="static/img/default.jpg";
 
     public Book() {
     }

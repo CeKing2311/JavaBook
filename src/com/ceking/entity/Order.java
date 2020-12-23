@@ -1,5 +1,6 @@
 package com.ceking.entity;
 
+
 import java.util.Date;
 
 /*

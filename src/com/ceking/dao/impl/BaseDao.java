@@ -32,12 +32,12 @@ public abstract class BaseDao {
         Connection conn = JDBCUtils.getConnection();
         try {
             return queryRunner.update(conn, sql, args);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw  new RuntimeException(e);
         }finally {
-           JDBCUtils.closeConnection(conn);
+//           JDBCUtils.closeConnection(conn);
         }
-        return  -1;
     }
 
     /**
@@ -54,10 +54,8 @@ public abstract class BaseDao {
            return queryRunner.query(conn,sql,new BeanHandler<T>(type),args);
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils.closeConnection(conn);
+            throw new RuntimeException(e);
         }
-        return  null;
     }
 
     /**
@@ -74,10 +72,8 @@ public abstract class BaseDao {
            return queryRunner.query(conn,sql,new BeanListHandler<T>(type),args);
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils.closeConnection(conn);
+            throw  new RuntimeException(e);
         }
-        return  null;
     }
 
     /**
@@ -92,10 +88,8 @@ public abstract class BaseDao {
            return queryRunner.query(conn, sql, new ScalarHandler(),args);
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils.closeConnection(conn);
+            throw  new RuntimeException(e);
         }
-        return  null;
     }
 
 }

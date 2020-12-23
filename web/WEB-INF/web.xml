@@ -37,7 +37,6 @@
         <servlet-name>KaptchaServlet</servlet-name>
         <url-pattern>/kaptcha.jpg</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>CartServlet</servlet-name>
         <servlet-class>com.ceking.web.CartServlet</servlet-class>
@@ -54,4 +53,33 @@
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/orderServlet</url-pattern>
     </servlet-mapping>
+
+
+    <filter>
+        <filter-name>ManagerFilter</filter-name>
+        <filter-class>com.ceking.filter.ManagerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ManagerFilter</filter-name>
+        <url-pattern>/pages/manager/*</url-pattern>
+        <url-pattern>/manager/bookServlet</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>TransactionFilter</filter-name>
+        <filter-class>com.ceking.filter.TransactionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>TransactionFilter</filter-name>
+        <!-- 当前工程目录下所有请求-->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- 错误页面配置-->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/pages/error/error500.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/pages/error/error404.jsp</location>
+    </error-page>
 </web-app>

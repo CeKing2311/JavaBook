@@ -27,6 +27,8 @@ public abstract class BaseServlet extends HttpServlet {
             method.invoke(this, req, resp);
         } catch (Exception e) {
             e.printStackTrace();
+            //将异常抛给过滤器
+            throw  new  RuntimeException(e);
         }
     }
 

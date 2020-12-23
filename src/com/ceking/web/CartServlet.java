@@ -3,9 +3,11 @@ package com.ceking.web;
 import com.ceking.entity.Book;
 import com.ceking.entity.Cart;
 import com.ceking.entity.CartItem;
+import com.ceking.entity.WebResult;
 import com.ceking.service.BookService;
 import com.ceking.service.impl.BookServiceImpl;
 import com.ceking.utils.WebUtils;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sound.midi.Soundbank;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  *@author ceking
@@ -31,6 +35,7 @@ public class CartServlet extends BaseServlet {
      * @throws IOException
      */
     protected void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
         HttpSession session = req.getSession();
         Cart cart = (Cart) session.getAttribute("cartInfo");
         if (cart == null) {
@@ -41,12 +46,19 @@ public class CartServlet extends BaseServlet {
         Book book = service.queryBookById(WebUtils.parseInt(id, 0));
         CartItem item = new CartItem(book.getId(), book.getName(), 1, book.getPrice(), 1 * book.getPrice());
         cart.addItem(item);
-
         session.setAttribute("lastName",book.getName());
-
         //重定向回发送请求的页面
+        WebResult result =new WebResult(true, "添加成功", 200, null);
+        Map<String ,Object> resMap= new HashMap<>();
+        resMap.put("success", true);
+        resMap.put("msg", "添加成功");
+        resMap.put("totalCount",cart.getTotalCount());
+        resMap.put("lastName", book.getName());
+
+        Gson gson = new Gson();
+        resp.getWriter().write(gson.toJson(resMap));
         //req.getHeader("Referer") 请求头中请求页面的地址
-        resp.sendRedirect(req.getHeader("Referer"));
+//        resp.sendRedirect(req.getHeader("Referer"));
     }
 
     /**
